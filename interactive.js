@@ -1,3 +1,4 @@
+//creation of Buttons
 let buttons = document.getElementById('buttons');
 let columns = 5;
 let rows = 4;
@@ -17,7 +18,7 @@ for (let i = 0; i < columns; i++) {
     buttons.appendChild(col);
 }
 
-
+//Calculation functionality added.
 function add(num1, num2) {
     return num1 + num2;
 }
@@ -39,7 +40,7 @@ function mod(num1, num2) {
 }
 
 
-
+//Calculation Maker added.
 function operator(firstNum, secondNum, operator) {
     if (operator == '+') {
         return add(firstNum, secondNum);
@@ -59,11 +60,14 @@ let firstNum = '';
 let operation = '';
 let secondNum = '';
 
-// let one = 0; 
-// let two = 0;
+//To check if the if it is '='
 let prevClick = '';
+
+//for writing into innertext of html element.
 let writeEle = document.getElementById('sc2');
 let writeEl1 = document.getElementById('sc1');
+
+//Event Listener added for buttons 
 let btn = Array.from(document.querySelectorAll('button'));
 btn.map(bt => {
     bt.addEventListener('click', () => {
