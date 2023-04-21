@@ -24,7 +24,7 @@ function add(num1, num2) {
 }
 
 function sub(num1, num2) {
-    return Math.abs(num1 - num2);
+    return (num1 - num2);
 }
 
 function mul(num1, num2) {
@@ -107,7 +107,7 @@ btn.map(bt => {
                 // console.log("dot" + secondNum);
             }
             //checks for operation symbol
-        } else if (firstNum != '' && secondNum == '' && (bt.innerText == '+' || bt.innerText == '-'
+        } else if ((firstNum != '' || firstNum == 0) && secondNum == '' && (bt.innerText == '+' || bt.innerText == '-'
             || bt.innerText == 'x' || bt.innerText == '/' || bt.innerText == '%')) {
             if (bt.innerText == 'x') {
                 operation = '*';
@@ -119,10 +119,12 @@ btn.map(bt => {
             prevClick = '';
             // console.log("operation" + " " + operation);
             // if the buttons is = then calls function for calculation.
-        } else if (firstNum != '' && secondNum != '' && bt.innerText == '=') {
+        } else if ((firstNum != '' || firstNum == 0) && secondNum != '' && bt.innerText == '=') {
+            
             let result = operator(parseFloat(firstNum), parseFloat(secondNum), operation);
+            console.log(result);
             prevClick = bt.innerText;
-            firstNum = result;
+             firstNum = result;
             // writeEle.innerText = result;
             if (writeEl1.innerText != '') {
                 writeEl1.innerText = '';
@@ -160,6 +162,7 @@ btn.map(bt => {
                 } else {
                     writeEl1.innerText = result.toFixed(5);
                 };
+                prevClick = '';
             }
 
             if (bt.innerText == 'x') {
@@ -192,6 +195,10 @@ btn.map(bt => {
             writeEle.innerText = ans.substring(0, ans.length - 1);
             // console.log(secondNum);
             // if +/- is clicked then adds '-' to number.
+        }else if(bt.innerText == 'C' && operation != '' && secondNum == ''){
+            let op = writeEle.innerText;
+            writeEle.innerText =  op.substring(0, op.length-1);
+            operation = '';
         } else if (bt.innerText == '+/-' && firstNum != '' && operation == '') {
             if (firstNum.includes('-')) {
                 firstNum = firstNum.substring(1);
